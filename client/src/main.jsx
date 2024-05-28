@@ -4,6 +4,8 @@ import { Landing } from './pages/Landing.jsx';
 import { Chat } from './pages/Chat.jsx';
 import { Erro } from './pages/Erro.jsx';
 import { Erro404 } from './pages/Erro404.jsx';
+import Login from './pages/Login.jsx'
+import Cadastro from './pages/Cadastro.jsx';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './output.css';
 
@@ -11,6 +13,16 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Landing />,
+    errorElement: <Erro />,
+    },
+    {
+    path: "/login",
+    element: <Login />,
+    errorElement: <Erro />,
+    },
+    {
+    path: "/cadastro",
+    element: <Cadastro />,
     errorElement: <Erro />,
     },
     {

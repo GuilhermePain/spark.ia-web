@@ -23,7 +23,7 @@ export function Chat() {
 Cesar, A. (2024). Importância da infraestrutura das escolas: visão geral da importância estrutural do ambiente pedagógico. Disponível em: <https://app.uff.br\>. Universidade Federal do Fluminense."/>
         <div className="rounded-xl border border-slate-400 w-8/12 ml-12 mb-4 h-12 bg-transparent absolute bottom-0 ">
           <button className="bg-orange-500 w-8 h-8 right-2 top-2 rounded-lg absolute font-bold text-white">
-            <i class="fa-solid fa-arrow-up mt-1"></i>
+            <i className="fa-solid fa-arrow-up mt-1"></i>
           </button>
           <input
             type="text"
