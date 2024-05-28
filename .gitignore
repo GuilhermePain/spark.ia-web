@@ -1,0 +1,30 @@
+# Node.js
+*/node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+yarn-cache/
+yarn-metadata/
+
+# React
+build/
+dist/
+coverage/
+*.map
+
+#Tailwind
+output.css
+
+# Other
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.vscode/
+.idea/
+.git/
+npm-shrinkwrap.json
+yarn.lock
+yarn-error.log
+*.pem

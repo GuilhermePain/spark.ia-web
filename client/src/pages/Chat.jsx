@@ -7,7 +7,10 @@ export function Chat() {
       <div className="bg-[#011f3a] h-screen w-3/12">
         <abbr title="Nova conversa">
           <div className="font-sans text-white flex ml-2 cursor-pointer select-none duration-300 hover:scale-105">
-            <img src="favicon.ico" className="w-9 h-9 mt-4 ml-4 border rounded-full shadow-md shadow-[#011f3a]"/>
+            <img
+              src="favicon.ico"
+              className="w-9 h-9 mt-4 ml-4 border rounded-full shadow-md shadow-[#011f3a]"
+            />
             <h2 className="mt-6 ml-1.5">Nova conversa</h2>
           </div>
         </abbr>
@@ -19,8 +22,11 @@ export function Chat() {
         <h2 className="text-center font-sans text-3xl mt-2 font-bold text-[#011f3a]">
           Como posso ajudá-lo hoje?
   </h2>*/}
-        <Mensagem nome="Spark" mensagem="
-Cesar, A. (2024). Importância da infraestrutura das escolas: visão geral da importância estrutural do ambiente pedagógico. Disponível em: <https://app.uff.br\>. Universidade Federal do Fluminense."/>
+        <Mensagem
+          nome="Spark"
+          mensagem="
+Cesar, A. (2024). Importância da infraestrutura das escolas: visão geral da importância estrutural do ambiente pedagógico. Disponível em: <https://app.uff.br\>. Universidade Federal do Fluminense."
+        />
         <div className="rounded-xl border border-slate-400 w-8/12 ml-12 mb-4 h-12 bg-transparent absolute bottom-0 ">
           <button className="bg-orange-500 w-8 h-8 right-2 top-2 rounded-lg absolute font-bold text-white">
             <i className="fa-solid fa-arrow-up mt-1"></i>
