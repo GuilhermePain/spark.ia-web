@@ -7,6 +7,8 @@ import session from "express-session";
 import passport from "passport";
 import LocalStrategy from "passport-local";
 import { fileURLToPath } from "url";
+import { autenticarUsuário } from "./db.js";
+import { iniciarChat, perguntar } from "./chatbot.js";
 
 const app = express();
 
@@ -60,17 +62,23 @@ app.use(express.static(path.resolve(__dirname, "../client/build")));
 /*===========AUTENTICAÇÃO===========*/
 //Setup de autenticação
 passport.use(
-  new LocalStrategy(async function verify(username, password, cb) {
-    const resultado = await autenticarUsuário(username, password);
-    if (resultado instanceof Error) {
-      return cb(null, false, { message: resultado.message });
-    } else {
-      return cb(null, {
-        id: resultado._id,
-        usuário: resultado.usuário,
-      });
+  new LocalStrategy(
+    {
+      usernameField: "email",
+      passwordField: "senha",
+    },
+    async function verify(email, senha, cb) {
+      const resultado = await autenticarUsuário(email, senha);
+      if (resultado instanceof Error) {
+        return cb(null, false, { message: resultado.message });
+      } else {
+        return cb(null, {
+          id: resultado._id,
+          email: resultado.email,
+        });
+      }
     }
-  })
+  )
 );
 
 //Configurar session
@@ -90,7 +98,7 @@ app.use(passport.authenticate("session"));
 //Serialização e deserialização
 passport.serializeUser(function (user, cb) {
   process.nextTick(function () {
-    cb(null, { id: user.id, username: user.usuário });
+    cb(null, { id: user.id, email: user.email });
   });
 });
 
@@ -101,18 +109,43 @@ passport.deserializeUser(function (user, cb) {
 });
 
 /*===========ROTAS===========*/
+// Chatbot
+app.get("/api/perguntar/:pergunta", async (req, res, _) => {
+  res.json(await perguntar(req.params.pergunta));
+});
+
+app.post("/api/iniciarchat", async (_, res, __) => {
+  res.json(await iniciarChat());
+});
+
 // Autenticação
-app.post("/login/autenticar", (req, res, next) => {
+app.post("/api/autenticar", (req, res, next) => {
   passport.authenticate("local", (_, usuário, info) => {
     if (usuário) {
       req.login(usuário, (erro) => {
         if (erro) return res.redirect(`/login?erro=${erro.message}`);
-        else return res.redirect("/home");
+        else return res.redirect("/chat");
       });
     } else {
       res.redirect(`/login?erro=${info.message}`);
     }
   })(req, res, next);
+});
+
+//Logout
+app.post("/api/sair", async (req, res) => {
+  req.logOut((erro) => {
+    if (erro) res.status(500).send({ message: "Não foi possível sair" });
+    else {
+      res.status(200).send({ message: "Saída feita com sucesso" });
+    }
+  });
+});
+
+//Checar autenticação
+app.get("/api/checkAutenticado", async (req, res) => {
+  if (!req.user) res.status(200).send([false, null]);
+  else res.status(200).send([req.isAuthenticated(), req.user]);
 });
 
 // Todas as outras solicitações GET não tratadas retornarão o app em React

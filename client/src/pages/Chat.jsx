@@ -1,6 +1,31 @@
+import { useEffect, useState } from "react";
 import Mensagem from "../components/Mensagem";
 
 export function Chat() {
+  const [conversa, setConversa] = useState([]);
+  const [prompt, setPrompt] = useState("");
+  useEffect(() => {
+    fetch("/api/iniciarchat", { method: "POST" });
+  }, []);
+
+  const novaMensagem = async () => {
+    if (prompt.length > 0) {
+      const input = document.querySelector("input");
+      let p = prompt;
+      setConversa([...conversa, { remetente: "Usuário", texto: prompt }]);
+
+      setPrompt("");
+      input.value = "";
+
+      const res = await fetch("/api/perguntar/" + p);
+      setConversa([
+        ...conversa,
+        { remetente: "Usuário", texto: prompt },
+        { remetente: "Spark", texto: await res.json() },
+      ]);
+    }
+  };
+
   return (
     <div className="flex w-full h-full">
       {/* Painel lateral */}
@@ -17,21 +42,40 @@ export function Chat() {
       </div>
 
       {/* Tela principal */}
-      <div className="bg-white h-screen w-9/12">
-        {/*<img className="mx-auto w-40 mt-28" src="Mascote.png" />
-        <h2 className="text-center font-sans text-3xl mt-2 font-bold text-[#011f3a]">
-          Como posso ajudá-lo hoje?
-  </h2>*/}
-        <Mensagem
-          nome="Spark"
-          mensagem="
-Cesar, A. (2024). Importância da infraestrutura das escolas: visão geral da importância estrutural do ambiente pedagógico. Disponível em: <https://app.uff.br\>. Universidade Federal do Fluminense."
-        />
-        <div className="rounded-xl border border-slate-400 w-8/12 ml-12 mb-4 h-12 bg-transparent absolute bottom-0 ">
-          <button className="bg-orange-500 w-8 h-8 right-2 top-2 rounded-lg absolute font-bold text-white">
+      <div className="bg-white h-screen w-9/12 pb-20 overflow-scroll">
+        {conversa.length === 0 && (
+          <>
+            <img className="mx-auto w-40 mt-28" src="Mascote.png" />
+            <h2 className="text-center font-sans text-3xl mt-2 font-bold text-[#011f3a]">
+              Como posso ajudá-lo hoje?
+            </h2>
+          </>
+        )}
+        {conversa.map((mensagem, ind) => {
+          return (
+            <Mensagem
+              key={ind}
+              nome={mensagem.remetente}
+              mensagem={mensagem.texto}
+            />
+          );
+        })}
+        <div className="rounded-xl border border-slate-400 w-8/12 ml-12 mb-4 h-12 bg-white absolute bottom-0 ">
+          <button
+            onClick={novaMensagem}
+            className="bg-orange-500 w-8 h-8 right-2 top-2 rounded-lg absolute font-bold text-white"
+          >
             <i className="fa-solid fa-arrow-up mt-1"></i>
           </button>
           <input
+            onChange={(e) => {
+              setPrompt(e.target.value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                novaMensagem();
+              }
+            }}
             type="text"
             placeholder="Insira um texto ou URL de um site educacional."
             className="outline-none p-3 bg-transparent font-sans font-semibold w-full h-full flex"
