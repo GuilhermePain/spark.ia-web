@@ -7,7 +7,7 @@ import session from "express-session";
 import passport from "passport";
 import LocalStrategy from "passport-local";
 import { fileURLToPath } from "url";
-import { autenticarUsuário } from "./db.js";
+import { autenticarUsuário, novoUsuário } from "./db.js";
 import { iniciarChat, perguntar } from "./chatbot.js";
 
 const app = express();
@@ -16,6 +16,9 @@ const app = express();
 //Setup do __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Servir arquivos estáticos
+app.use(express.static(path.resolve(__dirname, "../client/dist")));
 
 //Ler o dotenv
 dotenv.config();
@@ -118,6 +121,20 @@ app.post("/api/iniciarchat", async (_, res, __) => {
   res.json(await iniciarChat());
 });
 
+app.post("/api/novousuario", async (req, res, __) => {
+  const resultado = await novoUsuário(
+    req.body.nome,
+    req.body.email,
+    req.body.senha,
+    req.body.confirmarsenha
+  );
+  if (resultado instanceof Error) {
+    return res.redirect(`/cadastro?erro=${resultado.message}`);
+  } else {
+    return res.redirect(`/cadastro?sucesso=true`);
+  }
+});
+
 // Autenticação
 app.post("/api/autenticar", (req, res, next) => {
   passport.authenticate("local", (_, usuário, info) => {
@@ -150,5 +167,5 @@ app.get("/api/checkAutenticado", async (req, res) => {
 
 // Todas as outras solicitações GET não tratadas retornarão o app em React
 app.get("*", (_, res) => {
-  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+  res.sendFile(path.resolve(__dirname, "../client/dist", "index.html"));
 });

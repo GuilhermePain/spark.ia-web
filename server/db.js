@@ -8,6 +8,7 @@ configDotenv();
 const SALT = process.env.SALT;
 
 // Setup BD
+// *Adicionar TLS na produção
 const client = new Client({
   user: "postgres",
   host: "127.0.0.1", // Trocar em produção para a url do servidor
@@ -16,8 +17,8 @@ const client = new Client({
   port: 5432,
 });
 client.connect(function (err) {
-  if (err) throw err;
-  console.log("DB conectada!");
+  if (err) console.log("Erro ao iniciar a BD: " + err.message);
+  else console.log("BD conectada!");
 });
 
 function hashSenha(senha) {
@@ -50,25 +51,32 @@ function validarEmail(email) {
 }
 
 function validarUsuário(nome) {
-  const regex = /^[a-zA-Z0-9_]+$/;
+  const regex = /^[a-zA-Z0-9_\s]+$/;
   return regex.test(nome);
 }
 
 function validarSenha(senha) {
   const regex = /\s/;
-  return !regex.test(senha);
+  if (regex.test(senha)) return Error("Sua senha não pode conter espaços!");
+  if (senha.length < 8)
+    return Error("Sua senha deve ter no mínimo 8 caracteres!");
 }
 
-export async function novoUsuário(nome, email, senha) {
+export async function novoUsuário(nome, email, senha, confirmarSenha) {
+  // Validar input
+  if (senha !== confirmarSenha) {
+    return Error("Suas senhas não estão iguais!");
+  }
   if (!validarUsuário(nome)) {
     return Error("Nome de usuário inválido!");
   }
   if (!validarEmail(email)) {
     return Error("Email inválido!");
   }
-  if (validarSenha(senha) == false) {
-    return Error("Sua senha não pode conter espaços!");
-  }
+  const valSenha = validarSenha(senha);
+  if (valSenha instanceof Error) return valSenha;
+
+  // Checar se já existe um usuário com o mesmo email
   if ((await getUsuário(email)) == null) {
     //Gerar um hash com da senha escolhida
     const resultado = await hashSenha(senha);
