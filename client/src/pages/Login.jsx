@@ -15,7 +15,7 @@ export default function Login() {
           <img src={chatImage} alt="Bot" className="max-w-full h-auto" />
         </div>
         <div className="md:w-1/2 w-full flex flex-col justify-center p-20">
-          <h2 className="text-3xl font-bold text-center mb-5">Entrar</h2>
+          <h2 className="text-3xl font-bold text-center mb-1">Entrar</h2>
           <hr className=" border-t-2 border-[#fa7807] w-48 rounded-lg mx-auto mb-5" />
           <form method="POST" action="/api/autenticar">
             <div className="mb-4">
@@ -60,7 +60,7 @@ export default function Login() {
           )}
           <p className="text-center">
             Não tem uma conta?{" "}
-            <a href="#" className=" text-blue-400 hover:underline">
+            <a href="/cadastro" className=" text-blue-400 hover:underline">
               Registre-se
             </a>
           </p>

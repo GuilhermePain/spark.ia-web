@@ -1,11 +1,7 @@
-export default function Mensagem(props) {
-  const formatar = (texto) => {
-    const regex = /\*\*(.*?)\*\*/g;
-    return texto.replace(regex, (_, p1) => {
-      return `<strong className="font-bold">${p1}</strong>`;
-    });
-  };
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
+export default function Mensagem(props) {
   return (
     <div className="w-4/5 mx-auto flex mt-5">
       <div className="w-8 mx-auto">
@@ -22,10 +18,7 @@ export default function Mensagem(props) {
       </div>
       <div className="w-full ml-1">
         <h2 className="font-bold text-lg">{props.nome}</h2>
-        <p
-          className="text-lg -mt-1"
-          dangerouslySetInnerHTML={{ __html: formatar(props.mensagem) }}
-        ></p>
+        <Markdown remarkPlugins={[remarkGfm]}>{props.mensagem}</Markdown>
       </div>
     </div>
   );
