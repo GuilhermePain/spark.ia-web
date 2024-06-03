@@ -10,7 +10,7 @@ export default function Login() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#011F3B] p-12">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full h-full max-w-6x2 max-h-[calc(100vh-80px)] flex flex-col md:flex-row ]">
+      <div className="bg-white p-8 rounded-lg shadow-md w-[85%] sm:w-[80%] h-[600px] flex flex-col items-center justify-center md:justify-around md:flex-row ">
         <div className="hidden md:flex items-center justify-center w-1/2">
           <img src={chatImage} alt="Bot" className="max-w-full h-auto" />
         </div>

@@ -19,9 +19,9 @@ export default function Cadastro() {
 
   return (
     <div className="flex items-center justify-center h-[100vh] w-[100vw] bg-[#011F3B] ">
-      <div className="bg-white p-8 rounded-lg shadow-md w-[85%] sm:w-[70%] h-[550px] flex flex-col items-center justify-center md:justify-around md:flex-row ">
+      <div className="bg-white p-8 rounded-lg shadow-md w-[85%] sm:w-[80%] h-[600px] flex flex-col items-center justify-center md:justify-around md:flex-row ">
         <div className="hidden lg:flex items-center justify-center w-1/2">
-          <img src={chatImage} alt="Bot" className="w-[408px] h-[408px]" />
+          <img src={chatImage} alt="Bot" className="max-w-full h-auto" />
         </div>
 
         <div className="flex flex-col justify-center items-center w-max">
