@@ -32,12 +32,16 @@ export default function Header() {
           <li className='border-y-[1px] border-slate-700 p-2 w-full text-center md:border-none md:w-auto hover:text-[#fa7807] active:text-[#FDAD0B]'>Sobre nós</li>
         </ul>
         <div className='hidden gap-2 md:flex'>
-          <button className='bg-transparent border-[#fa7807] border-2 text-white rounded-[10px] px-4 py-2 hover:bg-[#FDAD0B] hover:border-[#FDAD0B]'>
-            Entrar
-          </button>
-          <button className='bg-[#FA7807] text-white rounded-[10px] px-4 py-2 hover:bg-[#FDAD0B]'>
-            Registrar
-          </button>
+          <a href='/login'>
+            <button className='bg-transparent border-[#fa7807] border-2 text-white rounded-[10px] px-4 py-2 hover:bg-[#FDAD0B] hover:border-[#FDAD0B]'>
+              Entrar
+            </button>
+          </a>
+          <a href='/cadastro'>
+            <button className='bg-[#FA7807] text-white rounded-[10px] px-4 py-2 hover:bg-[#FDAD0B]'>
+              Registrar
+            </button>
+          </a>
         </div>
       </nav>
     </header>
