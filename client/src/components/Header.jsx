@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import LogoSpark from '../../public/logo-branca.png';
 import { IoMenu, IoClose } from "react-icons/io5";
 
-export default function Header() {
+export default function Header( {scrollPosition} ) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -10,7 +10,7 @@ export default function Header() {
   };
 
   return (
-    <header className='bg-[#011F3B] w-full p-3 fixed top-0 z-50'>
+    <header className={`${scrollPosition = 800 ? `bg-white` : `bg-[#011F3B]`} w-full py-3 px-10 fixed top-0 z-50`}>
       <nav className='flex justify-between items-center'>
         <div className='flex items-center gap-3'>
           <img src={LogoSpark} alt="logo spark.ia" className='w-10'/>
