@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
-import LogoSpark from '../../public/logo-branca.png';
+import LogoClaraSpark from '../../public/logo-branca.png';
+import LogoEscuraSpark from '../../public/Mascote.png'
 import { IoMenu, IoClose } from "react-icons/io5";
 
 export default function Header( {scrollPosition} ) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrollPos, setScrollPos] = useState(0);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  window.addEventListener('scroll', () => {
+    setScrollPos(scrollPosition());
+  });
+
   return (
-    <header className={`${scrollPosition = 800 ? `bg-white` : `bg-[#011F3B]`} w-full py-3 px-10 fixed top-0 z-50`}>
+    <header className={`${scrollPos >= 800 ? `bg-white` : `bg-[#011F3B]`} w-full py-3 px-10 fixed top-0 z-50 shadow-xl`}>
       <nav className='flex justify-between items-center'>
         <div className='flex items-center gap-3'>
-          <img src={LogoSpark} alt="logo spark.ia" className='w-10'/>
-          <h1 className='text-xl text-white'>Spark.ia</h1>
+          <img src={scrollPos <= 800 ? LogoClaraSpark : LogoEscuraSpark} alt="logo spark.ia" className='w-10'/>
+          <h1 className={`text-2xl ${scrollPos <= 800 ? 'text-white' : 'text-[#011F3B]'}`}>Spark.ia</h1>
         </div>
         <div className='md:hidden'>
-          <button onClick={toggleMenu} className='text-white text-4xl'>
+          <button onClick={toggleMenu} className={`${scrollPos <= 800 ? 'text-white' : 'text-[##011F3B]'} text-4xl hover:text-[#fa7807] active:text-[#FDAD0B]`}>
             {!menuOpen && <IoMenu/>}
           </button>
         </div>
