@@ -17,7 +17,7 @@ export function Chat() {
       setPrompt("");
       input.value = "";
 
-      const res = await fetch("/api/perguntar/" + p);
+      const res = await fetch("/api/perguntar/" + encodeURIComponent(p));
       setConversa([
         ...conversa,
         { remetente: "Usuário", texto: prompt },
