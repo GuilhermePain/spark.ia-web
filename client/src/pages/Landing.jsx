@@ -6,11 +6,13 @@ import imgChatbot from '../../public/imgChatbot.svg'
 import imgFlashcards from '../../public/imgFlashcards.svg'
 import ActionButton from "../components/ActionButton";
 import Footer from "../components/Footer.jsx";
+import { register } from 'swiper/element/bundle';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import '../assets/Swiper.css';
 import ImgArthur from '../../public/imgArthur.svg';
 import ImgElissa from '../../public/imgElissa.svg';
 import ImgGuilherme from '../../public/imgGuilherme.svg';
@@ -20,6 +22,8 @@ import ImgJoaoPedro from '../../public/imgJoaoPedro.svg';
 import ImgKairo from '../../public/imgKairo.svg';
 import ImgMarcos from '../../public/imgMarcos.svg';
 import ImgSamira from '../../public/imgSamira.svg';
+
+register();
 
 export function Landing() {
 
@@ -114,8 +118,8 @@ export function Landing() {
                                         src={item.image} 
                                         alt="Imagem de um integrante do grupo"
                                      />
-                                     <h2 className="text-center text-3xl font-semibold mt-4">{item.name}</h2>
-                                     <p className="text-center text-xl">{item.position}</p>
+                                     <h2 className="text-center text-3xl font-semibold mt-2">{item.name}</h2>
+                                     <p className="text-center text-xl mb-12">{item.position}</p>
                                 </SwiperSlide>
                             ))
 
