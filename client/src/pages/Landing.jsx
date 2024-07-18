@@ -31,14 +31,14 @@ export function Landing() {
 
     const members = [
         { id: "1", name: "Arthur", image: ImgArthur, position: "Desenvolvedor Front-end" },
-        { id: "2", name: "Elissa",  image: ImgElissa, positon: "Apresentadora"},
-        { id: "3", name: "Guilherme", image: ImgGuilherme, positon: "Desenvolvedor Front-end"},
-        { id: "4", name: "Ícaro", image: ImgIcaro, positon: "Desenvolvedor Back-end"},
-        { id: "5", name: "Jeovane", image: ImgJeovane, positon: "Desenvolvedor Front-end"},
-        { id: "6", name: "João Pedro", image: ImgJoaoPedro, positon: "Desenvolvedor UI&UX Design"},
-        { id: "7", name: "Kairo", image: ImgKairo, positon: "Desenvolvedor Administrador de Banco de Dados"},
-        { id: "8", name: "Marcos", image: ImgMarcos, positon: "Desenvolvedor Front-end"},
-        { id: "9", name: "Samira", image: ImgSamira, positon: "Apresentadora"}
+        { id: "2", name: "Elissa",  image: ImgElissa, position: "Apresentadora"},
+        { id: "3", name: "Guilherme", image: ImgGuilherme, position: "Desenvolvedor Front-end"},
+        { id: "4", name: "Ícaro", image: ImgIcaro, position: "Desenvolvedor Back-end"},
+        { id: "5", name: "Jeovane", image: ImgJeovane, position: "Desenvolvedor Front-end"},
+        { id: "6", name: "João Pedro", image: ImgJoaoPedro, position: "Desenvolvedor UI&UX Design"},
+        { id: "7", name: "Kairo", image: ImgKairo, position: " Administrador de Banco de Dados"},
+        { id: "8", name: "Marcos", image: ImgMarcos, position: "Desenvolvedor Front-end"},
+        { id: "9", name: "Samira", image: ImgSamira, position: "Apresentadora"}
     ];
 
     return (
