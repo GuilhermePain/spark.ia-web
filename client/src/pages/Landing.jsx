@@ -6,10 +6,11 @@ import imgChatbot from '../../public/imgChatbot.svg'
 import imgFlashcards from '../../public/imgFlashcards.svg'
 import ActionButton from "../components/ActionButton";
 import Footer from "../components/Footer.jsx";
+import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css/scrollbar';
 import ImgArthur from '../../public/imgArthur.svg';
 import ImgElissa from '../../public/imgElissa.svg';
 import ImgGuilherme from '../../public/imgGuilherme.svg';
@@ -19,8 +20,6 @@ import ImgJoaoPedro from '../../public/imgJoaoPedro.svg';
 import ImgKairo from '../../public/imgKairo.svg';
 import ImgMarcos from '../../public/imgMarcos.svg';
 import ImgSamira from '../../public/imgSamira.svg';
-
-
 
 export function Landing() {
 
@@ -37,7 +36,7 @@ export function Landing() {
         { id: "5", name: "Jeovane", image: ImgJeovane, position: "Desenvolvedor Front-end"},
         { id: "6", name: "João Pedro", image: ImgJoaoPedro, position: "Desenvolvedor UI&UX Design"},
         { id: "7", name: "Kairo", image: ImgKairo, position: " Administrador de Banco de Dados"},
-        { id: "8", name: "Marcos", image: ImgMarcos, position: "Desenvolvedor Front-end"},
+        { id: "8", name: "Marcos", image: ImgMarcos, position: "Desenvolvedor Back-end"},
         { id: "9", name: "Samira", image: ImgSamira, position: "Apresentadora"}
     ];
 
@@ -115,8 +114,8 @@ export function Landing() {
                                         src={item.image} 
                                         alt="Imagem de um integrante do grupo"
                                      />
-                                     <h2 className="text-center">{item.name}</h2>
-                                     <p className="text-center">{item.position}</p>
+                                     <h2 className="text-center text-3xl font-semibold mt-4">{item.name}</h2>
+                                     <p className="text-center text-xl">{item.position}</p>
                                 </SwiperSlide>
                             ))
 
