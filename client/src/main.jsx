@@ -8,6 +8,7 @@ import Login from "./pages/Login.jsx";
 import Cadastro from "./pages/Cadastro.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./input.css";
+import Choice from "./pages/Choice.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
   {
     path: "/chat",
     element: <Chat />,
+    errorElement: <Erro />,
+  },
+  {
+    path: "/choice",
+    element: <Choice />,
     errorElement: <Erro />,
   },
   {
