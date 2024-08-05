@@ -8,7 +8,7 @@ import Login from "./pages/Login.jsx";
 import Cadastro from "./pages/Cadastro.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./input.css";
-import Choice from "./pages/Choice.jsx";
+import Home from "./pages/Home.jsx";
 
 const router = createBrowserRouter([
   {
@@ -32,8 +32,8 @@ const router = createBrowserRouter([
     errorElement: <Erro />,
   },
   {
-    path: "/choice",
-    element: <Choice />,
+    path: "/home",
+    element: <Home />,
     errorElement: <Erro />,
   },
   {
