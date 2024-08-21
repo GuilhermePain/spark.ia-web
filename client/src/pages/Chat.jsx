@@ -5,26 +5,38 @@ export function Chat() {
   const [conversa, setConversa] = useState([]);
   const [prompt, setPrompt] = useState("");
   useEffect(() => {
-    fetch("/api/iniciarchat", { method: "POST" });
+    fetch("http://localhost:3001/api/iniciarchat", { method: "POST" });
   }, []);
 
   const novaMensagem = async () => {
     if (prompt.length > 0) {
       const input = document.querySelector("input");
-      let p = prompt;
       setConversa([...conversa, { remetente: "Usuário", texto: prompt }]);
 
       setPrompt("");
       input.value = "";
 
-      const res = await fetch("/api/perguntar/" + encodeURIComponent(p));
-      setConversa([
-        ...conversa,
-        { remetente: "Usuário", texto: prompt },
-        { remetente: "Spark", texto: await res.json() },
-      ]);
+      try {
+        const res = await fetch("http://localhost:3001/api/perguntar/" + encodeURIComponent(prompt), { method: "POST" });
+        const respostaJson = await res.json();
+        const respostaTexto = respostaJson;
+
+        setConversa([
+          ...conversa,
+          { remetente: "Usuário", texto: prompt },
+          { remetente: "Spark", texto: respostaTexto },
+        ]);
+      } catch (error) {
+        console.error("Erro ao enviar mensagem:", error);
+        setConversa([
+          ...conversa,
+          { remetente: "Usuário", texto: prompt },
+          { remetente: "Spark", texto: "Erro ao processar a resposta." },
+        ]);
+      }
     }
   };
+
 
   return (
     <div className="flex w-full h-full">

@@ -41,8 +41,10 @@ html,
   /* 1 */
   -webkit-text-size-adjust: 100%;
   /* 2 */
+  -moz-tab-size: 4;
   /* 3 */
-  tab-size: 4;
+  -o-tab-size: 4;
+     tab-size: 4;
   /* 3 */
   font-family: Nunito, sans-serif;
   /* 4 */
@@ -376,6 +378,13 @@ textarea {
 2. Set the default placeholder color to the user's configured gray 400 color.
 */
 
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
 input::placeholder,
 textarea::placeholder {
   opacity: 1;
@@ -594,6 +603,10 @@ video {
   margin-bottom: 0.25rem;
 }
 
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -648,6 +661,10 @@ video {
 
 .mt-1 {
   margin-top: 0.25rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
 }
 
 .mt-2 {
@@ -712,6 +729,10 @@ video {
 
 .h-\[200px\] {
   height: 200px;
+}
+
+.h-\[20px\] {
+  height: 20px;
 }
 
 .h-\[220px\] {
@@ -794,6 +815,14 @@ video {
   width: 100vw;
 }
 
+.w-\[200px\] {
+  width: 200px;
+}
+
+.w-\[20px\] {
+  width: 20px;
+}
+
 .w-\[220px\] {
   width: 220px;
 }
@@ -811,7 +840,7 @@ video {
 }
 
 .w-max {
-  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
 }
 
@@ -839,6 +868,7 @@ video {
 
 .select-none {
   -webkit-user-select: none;
+     -moz-user-select: none;
           user-select: none;
 }
 
@@ -983,7 +1013,8 @@ video {
 }
 
 .object-cover {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .p-12 {

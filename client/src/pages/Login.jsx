@@ -1,12 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import chatImage from "../assets/chat.png";
-import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+// import { useUser } from '../context/UserContext';
+import { jwtDecode } from 'jwt-decode'; // Correção da importação
 
 export default function Login() {
+  const { login } = useUser();
+  const navigate = useNavigate();
   let [params] = useSearchParams();
   const err = params.get("erro");
   const [senhaVisível, setVisível] = useState(false);
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+
+  const logarUsuario = async (e) => {
+    e.preventDefault();
+
+    const dados = { email, senha };
+
+    try {
+      const response = await fetch("http://localhost:3001/api/autenticar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dados),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Erro ao autenticar usuário.");
+      }
+
+      const data = await response.json();
+      localStorage.setItem("token", data.token);
+
+      const decodedToken = jwtDecode(data.token); 
+      const userData = { nome: decodedToken.nome, email };
+      localStorage.setItem("user", JSON.stringify(userData)); 
+      login(userData); 
+
+      navigate("/choice");
+
+    } catch (error) {
+      alert("Erro ao autenticar usuário: " + error.message);
+      console.log(error.message);
+    }
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#011F3B] p-12">
@@ -16,13 +56,15 @@ export default function Login() {
         </div>
         <div className="md:w-1/2 w-full flex flex-col justify-center p-20">
           <h2 className="text-3xl font-bold text-center mb-1">Entrar</h2>
-          <hr className=" border-t-2 border-[#fa7807] w-48 rounded-lg mx-auto mb-5" />
-          <form method="POST" action="/api/autenticar">
+          <hr className="border-t-2 border-[#fa7807] w-48 rounded-lg mx-auto mb-5" />
+          <form onSubmit={logarUsuario}>
             <div className="mb-4">
               <label className="block">Email</label>
               <input
                 name="email"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="bg-gray-100 w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#fa7807] focus:border-[#FDAD0B]"
                 required
               />
@@ -32,6 +74,8 @@ export default function Login() {
               <input
                 name="senha"
                 type={senhaVisível ? "text" : "password"}
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
                 className="bg-gray-100 w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#fa7807] focus:border-[#FDAD0B]"
                 required
               />
@@ -39,9 +83,7 @@ export default function Login() {
             <div className="mb-4">
               <label className="inline-flex items-center">
                 <input
-                  onChange={(_) => {
-                    setVisível(!senhaVisível);
-                  }}
+                  onChange={() => setVisível(!senhaVisível)}
                   type="checkbox"
                   className="form-checkbox"
                 />
@@ -60,7 +102,7 @@ export default function Login() {
           )}
           <p className="text-center">
             Não tem uma conta?{" "}
-            <a href="/cadastro" className=" text-blue-400 hover:underline">
+            <a href="/cadastro" className="text-blue-400 hover:underline">
               Registre-se
             </a>
           </p>

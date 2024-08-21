@@ -7,6 +7,39 @@ export default function Cadastro() {
   const [erro, setErro] = useState(null);
   const location = useLocation();
   const alertRef = useRef(false);
+  const [dados, setDados] = useState({
+    nome: "",
+    email: "",
+    senha: "",
+    confirmarSenha: ""
+  });
+
+  const valorInput = (e) => setDados({ ...dados, [e.target.name]: e.target.value });
+
+  const cadastrarUsuario = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("https://back-spark-ia.duckdns.org/api/novoUsuario", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dados)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Erro ao cadastrar usuário");
+      }
+
+      window.location.href = "http://localhost:5173/choice"
+
+    } catch (err) {
+      console.log(err);
+      alert("Erro ao cadastrar usuário: " + err.message);
+    }
+  };
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -18,8 +51,8 @@ export default function Cadastro() {
   }, [location.search]);
 
   return (
-    <div className="flex items-center justify-center h-[100vh] w-[100vw] bg-[#011F3B] ">
-      <div className="bg-white p-8 rounded-lg shadow-md w-[85%] sm:w-[80%] h-[600px] flex flex-col items-center justify-center md:justify-around md:flex-row ">
+    <div className="flex items-center justify-center h-[100vh] w-[100vw] bg-[#011F3B]">
+      <div className="bg-white p-8 rounded-lg shadow-md w-[85%] sm:w-[80%] h-[600px] flex flex-col items-center justify-center md:justify-around md:flex-row">
         <div className="hidden lg:flex items-center justify-center w-1/2">
           <img src={chatImage} alt="Bot" className="max-w-full h-auto" />
         </div>
@@ -29,13 +62,13 @@ export default function Cadastro() {
           <hr className=" border-t-2 border-[#fa7807] w-48 rounded-lg mx-auto mb-5" />
 
           <form
-            action="/api/novousuario"
-            method="POST"
+            onSubmit={cadastrarUsuario}
             className="flex flex-col justify-center items-center w-auto"
           >
             <div className="mb-4">
               <label className="block font-semibold">Nome</label>
               <input
+                onChange={valorInput}
                 name="nome"
                 type="text"
                 className="bg-gray-100 sm:w-[300px] px-3 py-2 border rounded-[15px] focus:outline-none focus:ring-2 focus:ring-[#fa7807] focus:border-[#FDAD0B]"
@@ -45,6 +78,7 @@ export default function Cadastro() {
             <div className="mb-4">
               <label className="block font-semibold">Email</label>
               <input
+                onChange={valorInput}
                 name="email"
                 type="email"
                 className="bg-gray-100 sm:w-[300px] px-3 py-2 border rounded-[15px] focus:outline-none focus:ring-2 focus:ring-[#fa7807] focus:border-[#FDAD0B]"
@@ -55,6 +89,7 @@ export default function Cadastro() {
             <div className="mb-4">
               <label className="block font-semibold">Senha</label>
               <input
+                onChange={valorInput}
                 name="senha"
                 type={senhaVisível ? "text" : "password"}
                 className="bg-gray-100 sm:w-[300px] px-3 py-2 border rounded-[15px] focus:outline-none focus:ring-2 focus:ring-[#fa7807] focus:border-[#FDAD0B]"
@@ -65,7 +100,8 @@ export default function Cadastro() {
             <div className="mb-4">
               <label className="block font-semibold">Confirmar Senha</label>
               <input
-                name="confirmarsenha"
+                onChange={valorInput}
+                name="confirmarSenha"
                 type={senhaVisível ? "text" : "password"}
                 className="bg-gray-100 sm:w-[300px] px-3 py-2 border rounded-[15px] focus:outline-none focus:ring-2 focus:ring-[#fa7807] focus:border-[#FDAD0B]"
                 required

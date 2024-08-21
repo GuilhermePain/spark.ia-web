@@ -34,14 +34,14 @@ export function Landing() {
 
     const members = [
         { id: "1", name: "Arthur", image: ImgArthur, position: "Desenvolvedor Front-end" },
-        { id: "2", name: "Elissa",  image: ImgElissa, position: "Apresentadora"},
-        { id: "3", name: "Guilherme", image: ImgGuilherme, position: "Desenvolvedor Front-end"},
-        { id: "4", name: "Ícaro", image: ImgIcaro, position: "Desenvolvedor Back-end"},
-        { id: "5", name: "Jeovane", image: ImgJeovane, position: "Desenvolvedor Front-end"},
-        { id: "6", name: "João Pedro", image: ImgJoaoPedro, position: "Desenvolvedor UI&UX Design"},
-        { id: "7", name: "Kairo", image: ImgKairo, position: " Administrador de Banco de Dados"},
-        { id: "8", name: "Marcos", image: ImgMarcos, position: "Desenvolvedor Back-end"},
-        { id: "9", name: "Samira", image: ImgSamira, position: "Apresentadora"}
+        { id: "2", name: "Elissa", image: ImgElissa, position: "Apresentadora" },
+        { id: "3", name: "Guilherme", image: ImgGuilherme, position: "Desenvolvedor Front-end" },
+        { id: "4", name: "Ícaro", image: ImgIcaro, position: "Desenvolvedor Back-end" },
+        { id: "5", name: "Jeovane", image: ImgJeovane, position: "Desenvolvedor Front-end" },
+        { id: "6", name: "João Pedro", image: ImgJoaoPedro, position: "Desenvolvedor UI&UX Design" },
+        { id: "7", name: "Kairo", image: ImgKairo, position: " Administrador de Banco de Dados" },
+        { id: "8", name: "Marcos", image: ImgMarcos, position: "Desenvolvedor Back-end" },
+        { id: "9", name: "Samira", image: ImgSamira, position: "Apresentadora" }
     ];
 
     return (
@@ -54,7 +54,9 @@ export function Landing() {
                         <h1 className="text-[#FA7807] text-[50px] font-bold">Spark.ia</h1>
                         <h1 className="text-[38px] font-bold">Seu Assistente Inteligente para Preparação no ENEM</h1>
                         <p className="text-[#818181] text-[22px] mb-4">Transforme Textos e Links em Questões de Prova em Segundos</p>
-                        <ActionButton text='Experimente agora gratuitamente!' />
+                        <a href="/cadastro">
+                            <ActionButton text='Experimente agora gratuitamente!' />
+                        </a>
                     </aside>
                     <aside className="md:w-1/2 p-5">
                         <img src={imgHomeLandingpage} alt="Imagem ilustrativa do chatbot da seção inicial" className="max-w-full w-full" />
@@ -115,11 +117,11 @@ export function Landing() {
                                             mt-10
                                             mx-auto
                                         "
-                                        src={item.image} 
+                                        src={item.image}
                                         alt="Imagem de um integrante do grupo"
-                                     />
-                                     <h2 className="text-center text-3xl font-semibold mt-2">{item.name}</h2>
-                                     <p className="text-center text-xl mb-12">{item.position}</p>
+                                    />
+                                    <h2 className="text-center text-3xl font-semibold mt-2">{item.name}</h2>
+                                    <p className="text-center text-xl mb-12">{item.position}</p>
                                 </SwiperSlide>
                             ))
 
