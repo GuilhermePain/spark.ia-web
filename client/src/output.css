@@ -42,7 +42,10 @@ html,
   -webkit-text-size-adjust: 100%;
   /* 2 */
   -moz-tab-size: 4;
+  -moz-tab-size: 4;
   /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4;
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
@@ -385,6 +388,13 @@ input::-moz-placeholder, textarea::-moz-placeholder {
   /* 2 */
 }
 
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
 input::placeholder,
 textarea::placeholder {
   opacity: 1;
@@ -607,6 +617,10 @@ video {
   margin-bottom: 3rem;
 }
 
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -667,6 +681,10 @@ video {
   margin-top: 2.5rem;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -689,6 +707,26 @@ video {
 
 .mt-6 {
   margin-top: 1.5rem;
+}
+
+.mt-7 {
+  margin-top: 1.75rem;
+}
+
+.mt-16 {
+  margin-top: 4rem;
+}
+
+.mt-80 {
+  margin-top: 20rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
+}
+
+.mt-32 {
+  margin-top: 8rem;
 }
 
 .block {
@@ -735,6 +773,10 @@ video {
   height: 20px;
 }
 
+.h-\[20px\] {
+  height: 20px;
+}
+
 .h-\[220px\] {
   height: 220px;
 }
@@ -757,6 +799,10 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.h-\[400px\] {
+  height: 400px;
 }
 
 .min-h-screen {
@@ -841,7 +887,16 @@ video {
 
 .w-max {
   width: -moz-max-content;
+  width: -moz-max-content;
   width: max-content;
+}
+
+.w-\[465px\] {
+  width: 465px;
+}
+
+.w-\[300px\] {
+  width: 300px;
 }
 
 .max-w-full {
@@ -868,6 +923,7 @@ video {
 
 .select-none {
   -webkit-user-select: none;
+     -moz-user-select: none;
      -moz-user-select: none;
           user-select: none;
 }
@@ -906,6 +962,10 @@ video {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-5 {
+  gap: 1.25rem;
 }
 
 .overflow-scroll {
@@ -1012,7 +1072,19 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#D9D9D9\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 217 217 / var(--tw-bg-opacity));
+}
+
 .object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
   -o-object-fit: cover;
      object-fit: cover;
 }
