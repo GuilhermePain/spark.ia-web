@@ -1,6 +1,5 @@
 import React from "react";
 import { IoClose, IoPersonSharp } from "react-icons/io5";
-
 import LogoClaraSpark from "../../public/logo-branca.png";
 
 export default function Home() {
