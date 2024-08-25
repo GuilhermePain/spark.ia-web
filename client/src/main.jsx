@@ -10,6 +10,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./input.css";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import Choice from "./pages/Choice.jsx";
+import FlashCards from "./pages/FlashCards.jsx";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,13 @@ const router = createBrowserRouter([
       <PrivateRoute>
         <Choice />
       </PrivateRoute>
+    ),
+    errorElement: <Erro />,
+  },
+  {
+    path: "/flashcard",
+    element: (
+       <FlashCards />
     ),
     errorElement: <Erro />,
   },
