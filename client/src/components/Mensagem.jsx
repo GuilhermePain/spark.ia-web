@@ -18,7 +18,7 @@ export default function Mensagem(props) {
       </div>
       <div className="w-full ml-1">
         <h2 className="font-bold text-lg">{props.nome}</h2>
-        <div className="typing">
+        <div>
           <Markdown remarkPlugins={[remarkGfm]}>{props.mensagem}</Markdown>
         </div>
       </div>

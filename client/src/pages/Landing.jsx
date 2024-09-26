@@ -21,7 +21,6 @@ import ImgJeovane from '../../public/imgJeovane.svg';
 import ImgJoaoPedro from '../../public/imgJoaoPedro.svg';
 import ImgKairo from '../../public/imgKairo.svg';
 import ImgMarcos from '../../public/imgMarcos.svg';
-import ImgSamira from '../../public/imgSamira.svg';
 
 register();
 
@@ -40,8 +39,7 @@ export function Landing() {
         { id: "5", name: "Jeovane", image: ImgJeovane, position: "Desenvolvedor Front-end" },
         { id: "6", name: "João Pedro", image: ImgJoaoPedro, position: "Desenvolvedor UI&UX Design" },
         { id: "7", name: "Kairo", image: ImgKairo, position: " Administrador de Banco de Dados" },
-        { id: "8", name: "Marcos", image: ImgMarcos, position: "Desenvolvedor Back-end" },
-        { id: "9", name: "Samira", image: ImgSamira, position: "Apresentadora" }
+        { id: "8", name: "Marcos", image: ImgMarcos, position: "Desenvolvedor Back-end" }
     ];
 
     return (
@@ -101,32 +99,35 @@ export function Landing() {
                 <section className="p-6 md:w-full">
                     <h2 className="text-[#011F3B] text-[40px] text-bold text-center">Sobre nós</h2>
                     <hr className="border-t-2 border-[#fa7807] w-48 rounded-lg mx-auto mb-5" />
-                    <p className="text-justify text-xl">A Spark.ia é um projeto desenvolvido por alunos do ensino médio da escola EEEP Edson Queiroz, sabidos do quão difícil e requisitada é a vaga na universidade, pensamos em realizar um projeto que atendesse essas necessidades.</p>
-                    <Swiper
-                        slidesPerView={1}
-                        pagination={{ clickable: true }}
-                        navigation
-                    >
-                        {
-                            members.map((item) => (
-                                <SwiperSlide key={item.id}>
-                                    <img
-                                        className="
-                                            w-[200px]
-                                            rounded-full
-                                            mt-10
-                                            mx-auto
-                                        "
-                                        src={item.image}
-                                        alt="Imagem de um integrante do grupo"
-                                    />
-                                    <h2 className="text-center text-3xl font-semibold mt-2">{item.name}</h2>
-                                    <p className="text-center text-xl mb-12">{item.position}</p>
-                                </SwiperSlide>
-                            ))
-
-                        }
-                    </Swiper>
+                    <div className="md:flex justify-between items-center ">
+                        <p className="text-justify text-xl">
+                            A Spark.ia é um projeto inovador desenvolvido por alunos dedicados do ensino médio da EEEP Edson Queiroz. Cientes dos desafios e da competitividade que marcam o processo de ingresso nas universidades, decidimos criar uma ferramenta que pudesse realmente fazer a diferença na vida dos estudantes. Com base em nossas próprias experiências e nas dificuldades enfrentadas por muitos colegas, projetamos o Spark.ia com o objetivo de fornecer suporte educacional acessível e eficiente. Nosso compromisso é oferecer uma plataforma que não só facilita o processo de estudo, mas que também torna o aprendizado mais dinâmico e interativo. Utilizando tecnologias avançadas, como a inteligência artificial, integramos funcionalidades como resumos automáticos, geração de perguntas a partir de textos e jogos educativos, para que os alunos possam se preparar de forma mais eficaz para o ENEM e outros exames importantes.
+                        </p>
+                        <Swiper
+                            slidesPerView={1}
+                            pagination={{ clickable: true }}
+                            navigation
+                        >
+                            {
+                                members.map((item) => (
+                                    <SwiperSlide key={item.id}>
+                                        <img
+                                            className="
+                                                w-[200px]
+                                                rounded-full
+                                                mt-10
+                                                mx-auto
+                                            "
+                                            src={item.image}
+                                            alt="Imagem de um integrante do grupo"
+                                        />
+                                        <h2 className="text-center text-3xl font-semibold mt-2">{item.name}</h2>
+                                        <p className="text-center text-xl mb-12">{item.position}</p>
+                                    </SwiperSlide>
+                                ))
+                            }
+                        </Swiper>
+                    </div>
                 </section>
             </main>
             <Footer />

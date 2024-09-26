@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import chatImage from "../assets/chat.png";
 import { useSearchParams, useNavigate } from "react-router-dom";
-// import { useUser } from '../context/UserContext';
 import { jwtDecode } from 'jwt-decode'; // Correção da importação
 
 export default function Login() {
-  const { login } = useUser();
   const navigate = useNavigate();
   let [params] = useSearchParams();
   const err = params.get("erro");
@@ -36,10 +34,9 @@ export default function Login() {
       localStorage.setItem("token", data.token);
 
       const decodedToken = jwtDecode(data.token); 
-      const userData = { nome: decodedToken.nome, email };
+      const userData = { nome: decodedToken.nome };
       localStorage.setItem("user", JSON.stringify(userData)); 
-      login(userData); 
-
+      
       navigate("/choice");
 
     } catch (error) {

@@ -1,10 +1,20 @@
 import { useEffect, useState } from "react";
 import Mensagem from "../components/Mensagem";
+import { useNavigate } from "react-router-dom";
 
 export function Chat() {
   const [conversa, setConversa] = useState([]);
   const [prompt, setPrompt] = useState("");
+
+  const navigate = useNavigate();
+
   useEffect(() => {
+    const token = localStorage.getItem('token')
+
+    if(!token) {
+      navigate('/login')
+    }
+
     fetch("http://localhost:3001/api/iniciarchat", { method: "POST" });
   }, []);
 
