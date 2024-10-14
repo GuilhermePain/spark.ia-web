@@ -1,8 +1,11 @@
-export default function ActionButton({ text }) {
+export default function ActionButton({ text, className, onClick, disabled }) {
   return (
     <button
-      className='bg-[#FA7807] text-white font-bold p-4 rounded-xl border-2 border-[#FA7807] hover:bg-[#FDAD0B] hover:border-[#FDAD0B] active:bg-transparent active:border-[#FA7807] active:text-[#FA7807]'>
-        {text}
+      disabled={disabled}
+      onClick={() => onClick()}
+      className={`${className} bg-[#FA7807] text-white font-bold p-4 rounded-xl border-2 border-[#FA7807] hover:bg-[#FDAD0B] hover:border-[#FDAD0B] active:bg-transparent active:border-[#FA7807] active:text-[#FA7807] disabled:bg-slate-400 disabled:border-slate-400 disabled:active:text-white disabled:cursor-not-allowed`}
+    >
+      {text}
     </button>
   );
 }
