@@ -3,7 +3,6 @@ export default function ActionButton({
   className,
   onClick,
   disabled,
-  onClick,
   width,
 }) {
   return (
