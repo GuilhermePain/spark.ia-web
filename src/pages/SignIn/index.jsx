@@ -1,28 +1,60 @@
-import React from "react";
-import chatImage from "../assets/chat.png";
-import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import React, { useState } from "react";
+import imgChat from "../../assets/imgs/svg/imgs/imgChatbot.svg";
+import Cookies from 'js-cookies';
 
-export default function Login() {
-  let [params] = useSearchParams();
-  const err = params.get("erro");
-  const [senhaVisível, setVisível] = useState(false);
+export default function SignIn() {
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [senhaVisivel, setSenhaVisivel] = useState(false);
+
+  const formData = {
+    email: email,
+    senha: senha
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:3001/api/autenticar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro ao fazer login');
+      }
+
+      const data = await response.json();
+      console.log('Login bem-sucedido:', data);
+      Cookies.setItem('token', data.token);
+
+    } catch (error) {
+      alert('Erro ao fazer login');
+      console.log(error.message);
+    }
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#011F3B] p-12">
       <div className="bg-white p-8 rounded-lg shadow-md w-[85%] sm:w-[80%] h-[600px] flex flex-col items-center justify-center md:justify-around md:flex-row ">
         <div className="hidden md:flex items-center justify-center w-1/2">
-          <img src={chatImage} alt="Bot" className="max-w-full h-auto" />
+          <img src={imgChat} alt="Bot" className="max-w-full h-auto" />
         </div>
         <div className="md:w-1/2 w-full flex flex-col justify-center p-20">
           <h2 className="text-3xl font-bold text-center mb-1">Entrar</h2>
           <hr className=" border-t-2 border-[#fa7807] w-48 rounded-lg mx-auto mb-5" />
-          <form method="POST" action="/api/autenticar">
+          <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label className="block">Email</label>
               <input
                 name="email"
                 type="email"
+                value={email} // Associando o valor do estado ao input
+                onChange={(e) => setEmail(e.target.value)} // Atualizando o estado ao digitar
                 className="bg-gray-100 w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#fa7807] focus:border-[#FDAD0B]"
                 required
               />
@@ -31,7 +63,9 @@ export default function Login() {
               <label className="block">Senha</label>
               <input
                 name="senha"
-                type={senhaVisível ? "text" : "password"}
+                type={senhaVisivel ? "text" : "password"}
+                value={senha} // Associando o valor do estado ao input
+                onChange={(e) => setSenha(e.target.value)} // Atualizando o estado ao digitar
                 className="bg-gray-100 w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#fa7807] focus:border-[#FDAD0B]"
                 required
               />
@@ -40,7 +74,7 @@ export default function Login() {
               <label className="inline-flex items-center">
                 <input
                   onChange={(_) => {
-                    setVisível(!senhaVisível);
+                    setSenhaVisivel(!senhaVisivel);
                   }}
                   type="checkbox"
                   className="form-checkbox"
@@ -55,9 +89,9 @@ export default function Login() {
               Entrar
             </button>
           </form>
-          {err && (
+          {/* {err && (
             <p className="text-center text-red-500 font-semibold mt-2">{err}</p>
-          )}
+          )} */}
           <p className="text-center">
             Não tem uma conta?{" "}
             <a href="/cadastro" className=" text-blue-400 hover:underline">

@@ -1,4 +1,4 @@
-export function Erro404() {
+export function Error404() {
     return (
         <h1>
             404

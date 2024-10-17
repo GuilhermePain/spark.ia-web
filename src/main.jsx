@@ -1,39 +1,49 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Landing } from "./pages/Landing.jsx";
-import { Chat } from "./pages/Chat.jsx";
-import { Erro } from "./pages/Erro.jsx";
-import { Erro404 } from "./pages/Erro404.jsx";
-import Login from "./pages/Login.jsx";
-import Cadastro from "./pages/Cadastro.jsx";
+import { LandingPage } from "./pages/LandingPage/index.jsx";
+import { Chat } from "./pages/Chat/index.jsx";
+import { Error401 } from "./pages/Errors/401/index.jsx";
+import { Error404 } from "./pages/Errors/404/index.jsx";
+import SignIn from "./pages/SignIn/index.jsx";
+import SingUp from "./pages/SignUp/index.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./input.css";
+import Home from "./pages/Home/index.jsx";
+import { Questions } from "./pages/Questions/index.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Landing />,
-    errorElement: <Erro />,
+    element: <LandingPage />,
+    errorElement: <Error404 />,
   },
   {
-    path: "/login",
-    element: <Login />,
-    errorElement: <Erro />,
+    path: "/entrar",
+    element: <SignIn />,
+    errorElement: <Error404 />,
   },
   {
     path: "/cadastro",
-    element: <Cadastro />,
-    errorElement: <Erro />,
+    element: <SingUp />,
+    errorElement: <Error404 />,
+  },
+  {
+    path: "/inicio",
+    element: <Home />
   },
   {
     path: "/chat",
     element: <Chat />,
-    errorElement: <Erro />,
+    errorElement: <Error404 />,
+  },
+  {
+    path: "/questoes/:prova/:questao",
+    element: <Questions />,
+    errorElement: <Error404 />,
   },
   {
     path: "*",
-    element: <Erro404 />,
-    errorElement: <Erro />,
+    element: <Error404 />,
   },
 ]);
 

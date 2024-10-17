@@ -1,4 +1,4 @@
-export function Erro() {
+export function Error401() {
     
     return (
         <h1>
