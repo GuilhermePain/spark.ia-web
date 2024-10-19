@@ -35,7 +35,8 @@ function Footer() {
         <div>
           <p className='text-white text-[22px] mb-2 font-bold'>Transforme seus <br />estudos com Spark.ia</p>
           <Button
-          typeButton='primary'
+            link='/cadastro'
+            typeButton='primary'
             text='Cadastre-se agora!'
             padding='p-3'
           />

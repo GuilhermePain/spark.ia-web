@@ -12,7 +12,7 @@ export default function Card({ img, altText, title, text, typeCard }) {
             <p className="text-center text-[#818181]">{text}</p>
         </div>
         {
-          typeCard == 'inicio' && <Button text='Estudar' typeButton='primary' px='px-14' />
+          typeCard == 'inicio' && <Button link='/chat' text='Estudar' typeButton='primary' px='px-14' />
         }
     </div>
   )

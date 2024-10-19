@@ -19,6 +19,7 @@ export function LandingPage() {
                         <h1 className="text-[38px] font-bold">Seu Assistente Inteligente para Preparação no ENEM</h1>
                         <p className="text-[#818181] text-[22px] mb-4">Transforme Textos e Links em Questões de Prova em Segundos</p>
                         <Button
+                            link='/entrar'
                             text='Experimentar agora!'
                             px='px-20'
                             typeButton='primary'
@@ -61,7 +62,8 @@ export function LandingPage() {
                             Experimente o Spark.ia e transforme seus estudos!
                         </h3>
                         <Button
-                        typeButton='primary'
+                            link='/entrar'
+                            typeButton='primary'
                             text='Começar agora mesmo!'
                             padding='p-3'
                         />

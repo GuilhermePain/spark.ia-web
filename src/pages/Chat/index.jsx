@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Mensagem from "../../components/Message/Message";
+import imgBlackLogo from '../../assets/imgs/png/blackLogo.png';
 
 export function Chat() {
   const [conversa, setConversa] = useState([]);
@@ -47,7 +48,7 @@ export function Chat() {
       <div className="bg-white h-screen w-9/12 pb-20 overflow-scroll">
         {conversa.length === 0 && (
           <>
-            <img className="mx-auto w-40 mt-28" src="Mascote.png" />
+            <img className="mx-auto w-40 mt-28" src={imgBlackLogo} />
             <h2 className="text-center font-sans text-3xl mt-2 font-bold text-[#011f3a]">
               Como posso ajudá-lo hoje?
             </h2>

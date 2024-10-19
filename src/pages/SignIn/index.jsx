@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import imgChat from "../../assets/imgs/svg/imgs/imgChatbot.svg";
 import Cookies from 'js-cookies';
+import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [senhaVisivel, setSenhaVisivel] = useState(false);
+  const navigate = useNavigate();
 
   const formData = {
     email: email,
@@ -31,6 +33,7 @@ export default function SignIn() {
       const data = await response.json();
       console.log('Login bem-sucedido:', data);
       Cookies.setItem('token', data.token);
+      navigate('/inicio')
 
     } catch (error) {
       alert('Erro ao fazer login');

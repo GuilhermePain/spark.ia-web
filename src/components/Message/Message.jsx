@@ -1,5 +1,6 @@
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+// import imgBlackLogo from '../../assets/imgs/png/blackLogo.png';
 
 export default function Mensagem(props) {
   return (
@@ -8,7 +9,7 @@ export default function Mensagem(props) {
         <img
           src={
             props.nome === "Spark"
-              ? "Mascote.png"
+              ? '../../assets/imgs/png/blackLogo.png'
               : "https://cdn.vectorstock.com/i/preview-1x/08/19/gray-photo-placeholder-icon-design-ui-vector-35850819.jpg"
           }
           className={`w-7 rounded-full ${
