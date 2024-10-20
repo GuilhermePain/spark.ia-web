@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import imgChat from "../../assets/imgs/svg/imgs/imgChatbot.svg";
 
 export default function SingUp() {
   const [senhaVisível, setVisível] = useState(false);
   const [erro, setErro] = useState(null);
-
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+      // Simula um tempo de carregamento ou gatilho para exibir o conteúdo
+      setTimeout(() => {
+          setIsVisible(true);
+      }, 100); // 100ms delay antes de mostrar o conteúdo
+  }, []);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -69,7 +76,8 @@ export default function SingUp() {
   };
 
   return (
-    <div className="flex items-center justify-center h-[100vh] w-[100vw] bg-[#011F3B] ">
+    <div className={`flex items-center justify-center h-[100vh] w-[100vw] bg-[#011F3B] transition-all duration-1000 ease-in-out
+         ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       <div className="bg-white p-8 rounded-lg shadow-md w-[85%] sm:w-[80%] h-[600px] flex flex-col items-center justify-center md:justify-around md:flex-row ">
         <div className="hidden lg:flex items-center justify-center w-1/2">
           <img src={imgChat} alt="Bot" className="max-w-full h-auto" />

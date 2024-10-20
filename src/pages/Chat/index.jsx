@@ -5,6 +5,15 @@ import imgBlackLogo from '../../assets/imgs/png/blackLogo.png';
 export function Chat() {
   const [conversa, setConversa] = useState([]);
   const [prompt, setPrompt] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+      // Simula um tempo de carregamento ou gatilho para exibir o conteúdo
+      setTimeout(() => {
+          setIsVisible(true);
+      }, 100); // 100ms delay antes de mostrar o conteúdo
+  }, []);
+
   useEffect(() => {
     fetch("/api/iniciarchat", { method: "POST" });
   }, []);
@@ -30,7 +39,8 @@ export function Chat() {
   };
 
   return (
-    <div className="flex w-full h-full">
+    <div className={`flex w-full h-full transition-all duration-1000 ease-in-out
+         ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       {/* Painel lateral */}
       <div className="bg-[#011f3a] h-screen w-3/12">
         <abbr title="Nova conversa">
