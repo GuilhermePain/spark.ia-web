@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import imgChat from "../../assets/imgs/svg/imgs/imgChatbot.svg";
 import Cookies from 'js-cookies';
 import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
+  const [isVisible, setIsVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [senhaVisivel, setSenhaVisivel] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+      // Simula um tempo de carregamento ou gatilho para exibir o conteúdo
+      setTimeout(() => {
+          setIsVisible(true);
+      }, 100); // 100ms delay antes de mostrar o conteúdo
+  }, []);
 
   const formData = {
     email: email,
@@ -42,7 +50,8 @@ export default function SignIn() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#011F3B] p-12">
+    <div className={`flex items-center justify-center min-h-screen bg-[#011F3B] p-12 transition-all duration-1000 ease-in-out
+         ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       <div className="bg-white p-8 rounded-lg shadow-md w-[85%] sm:w-[80%] h-[600px] flex flex-col items-center justify-center md:justify-around md:flex-row ">
         <div className="hidden md:flex items-center justify-center w-1/2">
           <img src={imgChat} alt="Bot" className="max-w-full h-auto" />

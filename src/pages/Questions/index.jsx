@@ -3,7 +3,15 @@ import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 
 export function Questions() {
+    const [isVisible, setIsVisible] = useState(false);
     const [questão, setQuestão] = useState({});
+
+    useEffect(() => {
+        // Simula um tempo de carregamento ou gatilho para exibir o conteúdo
+        setTimeout(() => {
+            setIsVisible(true);
+        }, 100); // 100ms delay antes de mostrar o conteúdo
+    }, []);
 
     const data = document.location.pathname.split("/");
 
@@ -17,7 +25,8 @@ export function Questions() {
     }, []);
 
     return (
-        <>
+        <div className={`transition-all duration-1000 ease-in-out
+         ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
             <Header />
             {questão.alternatives && (
                 <main className="w-4/5 mx-auto mt-32 pb-10">
@@ -26,7 +35,7 @@ export function Questions() {
                             typeButton='primary'
                             disabled={númeroQuestão <= 1}
                             onClick={() => {
-                                document.location.href = `/questoes/${prova}/${númeroQuestão - 1
+                                document.location.href = `/enem/${prova}/${númeroQuestão - 1
                                     }`;
                             }}
                             text="Anterior"
@@ -36,7 +45,7 @@ export function Questions() {
                             typeButton='primary'
                             disabled={númeroQuestão >= 180}
                             onClick={() => {
-                                document.location.href = `/questoes/${prova}/${númeroQuestão + 1
+                                document.location.href = `/enem/${prova}/${númeroQuestão + 1
                                     }`;
                             }}
                             text="Próxima"
@@ -103,6 +112,6 @@ export function Questions() {
                     )}
                 </main>
             )}
-        </>
+        </div>
     );
 }

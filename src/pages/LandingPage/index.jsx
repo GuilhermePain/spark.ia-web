@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Header from "../../components/Header/Header.jsx";
 import Card from "../../components/Card/index.jsx";
 import imgHomeLandingpage from '../../assets/imgs/svg/imgs/imgLandingPage.svg';
@@ -8,8 +9,18 @@ import Button from "../../components/Button/Button.jsx";
 import Footer from '../../components/Footer/Footer.jsx';
 
 export function LandingPage() {
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        // Simula um tempo de carregamento ou gatilho para exibir o conteúdo
+        setTimeout(() => {
+            setIsVisible(true);
+        }, 100); // 100ms delay antes de mostrar o conteúdo
+    }, []);
+
     return (
-        <div className="flex flex-col justify-normal items-center w-full min-h-screen">
+        <div className={`flex flex-col justify-normal items-center w-full min-h-screen transition-all duration-1000 ease-in-out
+         ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
             <Header />
             <main className="w-full h-full mt-24">
                 {/* Seção inicial */}

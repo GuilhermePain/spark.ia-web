@@ -26,10 +26,12 @@ export default function Header({ userExisting }) {
   return (
     <header className={`bg-[#011F3B] w-full py-3 px-10 fixed top-0 z-50 shadow-xl`}>
       <nav className='flex justify-between items-center'>
-        <div className='flex items-center gap-3'>
-          <img src={LogoClaraSpark} alt="logo spark.ia" className='w-10' />
-          <h1 className={`text-white text-2xl`}>Spark.ia</h1>
-        </div>
+        <a href="/">
+          <div className='flex items-center gap-3'>
+            <img src={LogoClaraSpark} alt="logo spark.ia" className='w-10' />
+            <h1 className={`text-white text-2xl`}>Spark.ia</h1>
+          </div>
+        </a>
         <div className='md:hidden'>
           <button onClick={toggleMenu} className={`text-white text-4xl hover:text-[#fa7807] active:text-[#FDAD0B]`}>
             {!menuOpen && <IoMenu />}
@@ -53,14 +55,14 @@ export default function Header({ userExisting }) {
         </ul>
         <div className='hidden gap-2 md:flex'>
           {
-            userExisting 
-            ? <Button text='Sair' />
-            : <a href='/entrar'>
-            <Button
-              text='Entrar'
-            />
-          </a>
-          
+            userExisting
+              ? <Button text='Sair' />
+              : <a href='/entrar'>
+                <Button
+                  text='Entrar'
+                />
+              </a>
+
           }
         </div>
       </nav>
