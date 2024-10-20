@@ -4,29 +4,29 @@ import imgChat from "../../assets/imgs/svg/imgs/imgChatbot.svg";
 export default function SingUp() {
   const [senhaVisível, setVisível] = useState(false);
   const [erro, setErro] = useState(null);
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [confirmarSenha, setConfirmarSenha] = useState('');
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-      // Simula um tempo de carregamento ou gatilho para exibir o conteúdo
-      setTimeout(() => {
-          setIsVisible(true);
-      }, 100); // 100ms delay antes de mostrar o conteúdo
+    // Simula um tempo de carregamento ou gatilho para exibir o conteúdo
+    setTimeout(() => {
+      setIsVisible(true);
+    }, 100); // 100ms delay antes de mostrar o conteúdo
   }, []);
 
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (nome === '' || email === '' || senha === '' || confirmarSenha === '') {
-      setErro('Preencha todos os campos.');
+    if (nome === "" || email === "" || senha === "" || confirmarSenha === "") {
+      setErro("Preencha todos os campos.");
       return;
     }
 
     if (senha !== confirmarSenha) {
-      setErro('As senhas não coincidem.');
+      setErro("As senhas não coincidem.");
       return;
     }
 
@@ -43,8 +43,10 @@ export default function SingUp() {
 
     function validarSenha(senha) {
       const regex = /\s/;
-      if (regex.test(senha)) return new Error("Sua senha não pode conter espaços!");
-      if (senha.length < 8) return new Error("Sua senha deve ter no mínimo 8 caracteres!");
+      if (regex.test(senha))
+        return new Error("Sua senha não pode conter espaços!");
+      if (senha.length < 8)
+        return new Error("Sua senha deve ter no mínimo 8 caracteres!");
       return true;
     }
 
@@ -52,32 +54,37 @@ export default function SingUp() {
       nome,
       email,
       senha,
-      confirmarSenha
+      confirmarSenha,
     };
 
     try {
-      const response = await fetch('http://localhost:3001/api/novoUsuario', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://spark-ia.duckdns.org/api/novoUsuario",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (!response.ok) {
-        throw new Error('Erro ao tentar se registrar.');
+        throw new Error("Erro ao tentar se registrar.");
       }
 
-      alert('Registrado com sucesso!');
+      alert("Registrado com sucesso!");
     } catch (error) {
-      setErro('Erro ao tentar se registrar.');
-      console.error('Erro:', error);
+      setErro("Erro ao tentar se registrar.");
+      console.error("Erro:", error);
     }
   };
 
   return (
-    <div className={`flex items-center justify-center h-[100vh] w-[100vw] bg-[#011F3B] transition-all duration-1000 ease-in-out
-         ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+    <div
+      className={`flex items-center justify-center h-[100vh] w-[100vw] bg-[#011F3B] transition-all duration-1000 ease-in-out
+         ${isVisible ? "opacity-100" : "opacity-0"}`}
+    >
       <div className="bg-white p-8 rounded-lg shadow-md w-[85%] sm:w-[80%] h-[600px] flex flex-col items-center justify-center md:justify-around md:flex-row ">
         <div className="hidden lg:flex items-center justify-center w-1/2">
           <img src={imgChat} alt="Bot" className="max-w-full h-auto" />
@@ -87,7 +94,10 @@ export default function SingUp() {
           <h2 className="text-3xl font-bold text-center mb-1">Registro</h2>
           <hr className=" border-t-2 border-[#fa7807] w-48 rounded-lg mx-auto mb-5" />
 
-          <form onSubmit={handleRegister} className="flex flex-col justify-center items-center w-auto">
+          <form
+            onSubmit={handleRegister}
+            className="flex flex-col justify-center items-center w-auto"
+          >
             <div className="mb-4">
               <label className="block font-semibold">Nome</label>
               <input
