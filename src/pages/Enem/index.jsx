@@ -19,7 +19,7 @@ const Enem = () => {
 
   const getEnemApplications = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/exam', {
+      const response = await fetch('https://spark-ia.duckdns.org/api/exam', {
         method: 'GET'
       })
 
