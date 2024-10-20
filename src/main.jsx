@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { LandingPage } from "./pages/LandingPage/index.jsx";
 import { Chat } from "./pages/Chat/index.jsx";
-import { Error401 } from "./pages/Errors/401/index.jsx";
 import { Error404 } from "./pages/Errors/404/index.jsx";
 import SignIn from "./pages/SignIn/index.jsx";
 import SingUp from "./pages/SignUp/index.jsx";
