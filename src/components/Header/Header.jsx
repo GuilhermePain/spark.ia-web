@@ -9,7 +9,7 @@ export default function Header({ userExisting }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const hideLinks = document.location.pathname !== "home";
+  const hideLinks = document.location.pathname !== "/";
 
   const token = Cookies.getItem("token");
 
