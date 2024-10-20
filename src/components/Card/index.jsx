@@ -1,6 +1,11 @@
 import Button from "../Button/Button";
 
-export default function Card({ img, altText, title, text, typeCard }) {
+export default function Card({ img, altText, title, text, typeCard, link }) {
+
+  const redirect = () => {
+    window.location.href = link;
+  }
+
   return (
     <div className="bg-white shadow-2xl rounded-[20px] flex flex-col items-center justify-center h-[500px] md:w-[600px] md:h-[500px] cursor-pointer">
         <div>
@@ -12,7 +17,7 @@ export default function Card({ img, altText, title, text, typeCard }) {
             <p className="text-center text-[#818181]">{text}</p>
         </div>
         {
-          typeCard == 'inicio' && <Button link='/chat' text='Estudar' typeButton='primary' px='px-14' />
+          typeCard == 'inicio' && <Button onClick={redirect} text='Estudar' typeButton='primary' px='px-14' />
         }
     </div>
   )

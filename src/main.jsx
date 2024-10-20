@@ -10,6 +10,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./input.css";
 import Home from "./pages/Home/index.jsx";
 import { Questions } from "./pages/Questions/index.jsx";
+import Enem from "./pages/Enem/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,12 @@ const router = createBrowserRouter([
     errorElement: <Error404 />,
   },
   {
-    path: "/questoes/:prova/:questao",
+    path: "/enem",
+    element: <Enem />,
+    errorElement: <Error404 />,
+  },
+  {
+    path: "/enem/:prova/:questao",
     element: <Questions />,
     errorElement: <Error404 />,
   },

@@ -5,12 +5,23 @@ import imgChatbot from '../../assets/imgs/svg/imgs/imgChatbot.svg';
 import imgFlashcards from '../../assets/imgs/svg/imgs/imgFlashcards.svg';
 
 const Home = () => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        // Simula um tempo de carregamento ou gatilho para exibir o conteúdo
+        setTimeout(() => {
+            setIsVisible(true);
+        }, 100); // 100ms delay antes de mostrar o conteúdo
+    }, []);
+
     return (
-        <div>
+        <div className={`transition-all duration-1000 ease-in-out
+         ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
             <Header />
             <main className="mt-20 md:mt-32 p-8">
                 <div className="flex flex-col gap-5 md:flex-row">
                     <Card
+                        link='/chat'
                         img={imgChatbot}
                         title="Chatbot"
                         text=' Chatbot que gera questões a partir de textos e links enviados pelo usuário, utilizando linguagem natural para criar perguntas de múltipla escolha, verdadeiro ou falso e dissertativas.'
@@ -23,6 +34,7 @@ const Home = () => {
                         typeCard='inicio'
                     />
                     <Card
+                        link='/enem'
                         img={imgQuestoes}
                         title="Banco de questões"
                         text='Banco de questões do ENEM, permitindo que os estudantes respondam e confiram justificativas das respostas, ajudando no entendimento dos temas.'
