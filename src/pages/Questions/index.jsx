@@ -18,19 +18,11 @@ export function Questions() {
   const prova = data[2];
   const númeroQuestão = parseInt(data[3]);
 
-<<<<<<< HEAD
   useEffect(() => {
     fetch(
       `https://spark-ia.duckdns.org/api/exam/${prova}/${númeroQuestão}`
     ).then(async (res) => setQuestão(await res.json()));
   }, []);
-=======
-    useEffect(() => {
-        fetch(`https://spark-ia.duckdns.org/api/exam/${prova}/${númeroQuestão}`).then(
-            async (res) => setQuestão(await res.json())
-        );
-    }, []);
->>>>>>> feature/landingPage
 
   return (
     <div

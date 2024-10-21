@@ -58,7 +58,6 @@ export default function SingUp() {
     };
 
     try {
-<<<<<<< HEAD
       const response = await fetch(
         "https://spark-ia.duckdns.org/api/novoUsuario",
         {
@@ -69,15 +68,6 @@ export default function SingUp() {
           body: JSON.stringify(formData),
         }
       );
-=======
-      const response = await fetch('https://spark-ia.duckdns.org/api/novoUsuario', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
->>>>>>> feature/landingPage
 
       if (!response.ok) {
         throw new Error("Erro ao tentar se registrar.");

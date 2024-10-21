@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import Card from "../../components/Card";
 import Header from "../../components/Header/Header";
 import imgQuestoes from "../../assets/imgs/svg/imgs/imgQuestoes.svg";
@@ -16,7 +15,6 @@ const Home = () => {
     }, 100); // 100ms delay antes de mostrar o conteúdo
   }, []);
 
-<<<<<<< HEAD
   return (
     <div
       className={`transition-all duration-1000 ease-in-out
@@ -45,37 +43,6 @@ const Home = () => {
             text="Banco de questões do ENEM, permitindo que os estudantes respondam e confiram justificativas das respostas, ajudando no entendimento dos temas."
             typeCard="inicio"
           />
-=======
-    return (
-        <div className={`transition-all duration-1000 ease-in-out
-         ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-            <Header />
-            <main className="mt-20 md:mt-32 p-8">
-                <div className="flex flex-col gap-5 md:flex-row">
-                    <Card
-                        link='/chat'
-                        img={imgChatbot}
-                        title="Chatbot"
-                        text=' Chatbot que gera questões a partir de textos e links enviados pelo usuário, utilizando linguagem natural para criar perguntas de múltipla escolha, verdadeiro ou falso e dissertativas.'
-                        typeCard='inicio'
-                    />
-                    <Card
-                        link='/flashcards'
-                        img={imgFlashcards}
-                        title="Flashcards"
-                        text='Flashcards que permite criar ou receber sugestões de cartões para revisão, usando repetição espaçada e gamificação para incentivar o estudo contínuo.'
-                        typeCard='inicio'
-                    />
-                    <Card
-                        link='/enem'
-                        img={imgQuestoes}
-                        title="Banco de questões"
-                        text='Banco de questões do ENEM, permitindo que os estudantes respondam e confiram justificativas das respostas, ajudando no entendimento dos temas.'
-                        typeCard='inicio'
-                    />
-                </div>
-            </main>
->>>>>>> feature/landingPage
         </div>
       </main>
     </div>
