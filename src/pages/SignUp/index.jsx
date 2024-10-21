@@ -56,7 +56,7 @@ export default function SingUp() {
     };
 
     try {
-      const response = await fetch('http://localhost:3001/api/novoUsuario', {
+      const response = await fetch('https://spark-ia.duckdns.org/api/novoUsuario', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Card from "../../components/Card";
 import Header from "../../components/Header/Header";
 import imgQuestoes from '../../assets/imgs/svg/imgs/imgQuestoes.svg';
@@ -28,6 +29,7 @@ const Home = () => {
                         typeCard='inicio'
                     />
                     <Card
+                        link='/flashcards'
                         img={imgFlashcards}
                         title="Flashcards"
                         text='Flashcards que permite criar ou receber sugestões de cartões para revisão, usando repetição espaçada e gamificação para incentivar o estudo contínuo.'

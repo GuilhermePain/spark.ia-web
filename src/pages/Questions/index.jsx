@@ -19,7 +19,7 @@ export function Questions() {
     const númeroQuestão = parseInt(data[3]);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/api/exam/${prova}/${númeroQuestão}`).then(
+        fetch(`https://spark-ia.duckdns.org/api/exam/${prova}/${númeroQuestão}`).then(
             async (res) => setQuestão(await res.json())
         );
     }, []);

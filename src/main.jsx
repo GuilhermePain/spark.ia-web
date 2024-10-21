@@ -11,6 +11,7 @@ import "./input.css";
 import Home from "./pages/Home/index.jsx";
 import { Questions } from "./pages/Questions/index.jsx";
 import Enem from "./pages/Enem/index.jsx";
+import Flashcards from "./pages/Flashcards/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
   {
     path: "/chat",
     element: <Chat />,
+    errorElement: <Error404 />,
+  },
+  {
+    path: "/flashcards",
+    element: <Flashcards />,
     errorElement: <Error404 />,
   },
   {
