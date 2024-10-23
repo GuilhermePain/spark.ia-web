@@ -1,0 +1,16 @@
+/*
+estilo para os components do carrossel utilizado na seção sobre nós da Landing page.
+*/
+.swiper-button-next, .swiper-button-prev {
+    color: #fa7807;
+    position: absolute;
+    top: 150px;
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover {
+    color: #FDAD0B;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #fa7807;
+}
