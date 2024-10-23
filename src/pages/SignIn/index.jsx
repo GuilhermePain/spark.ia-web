@@ -61,7 +61,7 @@ export default function SignIn() {
       className={`flex items-center justify-center min-h-screen bg-[#011F3B] p-12 transition-all duration-1000 ease-in-out
          ${isVisible ? "opacity-100" : "opacity-0"}`}
     >
-      <div className="bg-white p-8 rounded-lg shadow-md w-[85%] sm:w-[80%] h-[600px] flex flex-col items-center justify-center md:justify-around md:flex-row ">
+      <div className="bg-white p-8 rounded-lg shadow-md w-[100%] sm:w-[80%] md:h-[600px] flex flex-col items-center justify-center md:justify-around md:flex-row ">
         <div className="hidden md:flex items-center justify-center w-1/2">
           <img src={imgChat} alt="Bot" className="max-w-full h-auto" />
         </div>
@@ -120,9 +120,9 @@ export default function SignIn() {
             </p>
           )}
 
-          <p className="text-center">
-            Não tem uma conta ainda?{" "}
-            <a href="/cadastro" className=" text-blue-400 hover:underline">
+          <p className="text-center mt-3">
+            Não tem uma conta?{" "}
+            <a href="/cadastro" className=" text-[#fa7807] hover:underline">
               Cadastre-se
             </a>
           </p>

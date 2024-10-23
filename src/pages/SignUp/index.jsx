@@ -171,9 +171,9 @@ export default function SingUp() {
             </p>
           )}
 
-          <p className="text-center">
+          <p className="text-center mt-3">
             Já tem uma conta?{" "}
-            <a href="/entrar" className=" text-blue-400 hover:underline">
+            <a href="/entrar" className=" text-[#fa7807] hover:underline">
               Entre
             </a>
           </p>

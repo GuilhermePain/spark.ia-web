@@ -31,6 +31,7 @@ const Home = () => {
             typeCard="inicio"
           />
           <Card
+            link='/flashcards'
             img={imgFlashcards}
             title="Flashcards"
             text="Flashcards que permite criar ou receber sugestões de cartões para revisão, usando repetição espaçada e gamificação para incentivar o estudo contínuo."

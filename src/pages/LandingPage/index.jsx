@@ -57,14 +57,14 @@ export function LandingPage() {
                             img={imgChatbot}
                             altText='imagem ilustrativa de plano elaborado'
                             title='Chatbot'
-                            text='A segunda funcionalidade é um chatbot que gera questões com base nos textos e links enviados pelo usuário. Utilizando processamento de linguagem natural, o chatbot analisa o conteúdo, extrai tópicos principais e cria questões de múltipla escolha, verdadeiro ou falso e dissertativas, ajudando na fixação do conteúdo estudado.'
+                            text='A segunda funcionalidade é um chatbot que gera questões com base nos textos e links enviados pelo usuário.O chatbot analisa o conteúdo, extrai tópicos principais e cria questões de múltipla escolha, verdadeiro ou falso e dissertativas, ajudando na fixação do conteúdo estudado.'
                             imgClassName="w-[220px] h-[220px] object-cover"
                         />
                         <Card
                             img={imgFlashcards}
                             altText='imagem ilustrativa de plano elaborado'
                             title='Flashcards'
-                            text='A terceira funcionalidade é a implementação de flashcards para memorização. Os estudantes podem criar flashcards manualmente ou receber sugestões baseadas nos conteúdos estudados ou nas perguntas do chatbot. A revisão usa técnicas de repetição espaçada e gamificação para incentivar o uso regular, com pontuação, recompensas e estatísticas de desempenho.'
+                            text='A funcionalidade de flashcards permite que os estudantes criem cartões manualmente ou recebam sugestões baseadas em conteúdos estudados e perguntas do chatbot. A revisão utiliza repetição espaçada e gamificação, incentivando o uso regular.'
                             imgClassName="w-[220px] h-[220px] object-cover"
                         />
 
