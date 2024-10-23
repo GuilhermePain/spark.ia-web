@@ -10,6 +10,8 @@ import "./input.css";
 import Home from "./pages/Home/index.jsx";
 import { Questions } from "./pages/Questions/index.jsx";
 import Enem from "./pages/Enem/index.jsx";
+import Flashcard from "./pages/Flashcard/index.jsx";
+import FlashcardSubject from "./pages/FlashcardSubject/index.jsx"
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,16 @@ const router = createBrowserRouter([
   {
     path: "/chat",
     element: <Chat />,
+    errorElement: <Error404 />,
+  },
+  {
+    path: "/flashcard",
+    element: <Flashcard />,
+    errorElement: <Error404 />,
+  },
+  {
+    path: "/flashcard/:materia/:pergunta",
+    element: <FlashcardSubject />,
     errorElement: <Error404 />,
   },
   {

@@ -8,9 +8,14 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [senhaVisivel, setSenhaVisivel] = useState(false);
+  const [erro, setErro] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Simula um tempo de carregamento ou gatilho para exibir o conteúdo
+    setTimeout(() => {
+      setIsVisible(true);
+    }, 100); // 100ms delay antes de mostrar o conteúdo
     // Simula um tempo de carregamento ou gatilho para exibir o conteúdo
     setTimeout(() => {
       setIsVisible(true);
@@ -56,62 +61,69 @@ export default function SignIn() {
       className={`flex items-center justify-center min-h-screen bg-[#011F3B] p-12 transition-all duration-1000 ease-in-out
          ${isVisible ? "opacity-100" : "opacity-0"}`}
     >
-      <div className="bg-white p-8 rounded-lg shadow-md w-[85%] sm:w-[80%] h-[600px] flex flex-col items-center justify-center md:justify-around md:flex-row ">
+      <div className="bg-white p-8 rounded-lg shadow-md w-[100%] sm:w-[80%] md:h-[600px] flex flex-col items-center justify-center md:justify-around md:flex-row ">
         <div className="hidden md:flex items-center justify-center w-1/2">
           <img src={imgChat} alt="Bot" className="max-w-full h-auto" />
         </div>
-        <div className="md:w-1/2 w-full flex flex-col justify-center p-20">
+
+        <div className="flex flex-col justify-center items-center w-max">
           <h2 className="text-3xl font-bold text-center mb-1">Entrar</h2>
           <hr className=" border-t-2 border-[#fa7807] w-48 rounded-lg mx-auto mb-5" />
-          <form onSubmit={handleSubmit}>
+
+          <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center w-auto">
             <div className="mb-4">
-              <label className="block">Email</label>
+              <label className="block font-semibold">Email</label>
               <input
                 name="email"
                 type="email"
-                value={email} // Associando o valor do estado ao input
-                onChange={(e) => setEmail(e.target.value)} // Atualizando o estado ao digitar
-                className="bg-gray-100 w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#fa7807] focus:border-[#FDAD0B]"
+                className="bg-gray-100 sm:w-[300px] px-3 py-2 border rounded-[15px] focus:outline-none focus:ring-2 focus:ring-[#fa7807] focus:border-[#FDAD0B]"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
+
             <div className="mb-4">
-              <label className="block">Senha</label>
+              <label className="block font-semibold">Senha</label>
               <input
                 name="senha"
                 type={senhaVisivel ? "text" : "password"}
-                value={senha} // Associando o valor do estado ao input
-                onChange={(e) => setSenha(e.target.value)} // Atualizando o estado ao digitar
-                className="bg-gray-100 w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#fa7807] focus:border-[#FDAD0B]"
+                className="bg-gray-100 sm:w-[300px] px-3 py-2 border rounded-[15px] focus:outline-none focus:ring-2 focus:ring-[#fa7807] focus:border-[#FDAD0B]"
                 required
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
               />
             </div>
-            <div className="mb-4">
+
+            <div className="mb-3 w-full">
               <label className="inline-flex items-center">
                 <input
-                  onChange={(_) => {
-                    setSenhaVisivel(!senhaVisivel);
-                  }}
                   type="checkbox"
+                  onChange={() => setSenhaVisivel(!senhaVisivel)}
                   className="form-checkbox"
                 />
                 <span className="ml-2 text-gray-700">Mostrar senha</span>
               </label>
             </div>
+
             <button
               type="submit"
-              className="flex items-center font-bold duration-300 justify-center bg-[#fa7807] text-white py-2 w-48 rounded-lg hover:bg-[#FDAD0B] active:bg-[#FA7807] focus:outline-none focus:ring-2 focus:ring-[#fa7807] mx-auto"
+              className="flex items-center justify-center bg-[#fa7807] text-white py-2 w-48 rounded-lg hover:bg-[#FDAD0B] active:bg-[#FA7807] focus:outline-none focus:ring-2 focus:ring-[#fa7807] mx-auto"
             >
               Entrar
             </button>
           </form>
-          {/* {err && (
-            <p className="text-center text-red-500 font-semibold mt-2">{err}</p>
-          )} */}
-          <p className="text-center">
+
+          {erro && (
+            <p className="text-center text-red-500 font-semibold mt-2">
+              {erro}
+            </p>
+          )}
+
+          <p className="text-center mt-3">
             Não tem uma conta?{" "}
-            <a href="/cadastro" className=" text-blue-400 hover:underline">
-              Registre-se
+            <a href="/cadastro" className=" text-[#fa7807] hover:underline">
+              Cadastre-se
             </a>
           </p>
         </div>

@@ -22,7 +22,7 @@ export function Chat() {
     if (prompt.length > 0) {
       const input = document.querySelector("input");
       let p = prompt;
-      setConversa([...conversa, { remetente: "Usuário", texto: prompt }]);
+      setConversa([...conversa, { remetente: "Você", texto: prompt }]);
 
       setPrompt("");
       input.value = "";
@@ -32,7 +32,7 @@ export function Chat() {
       });
       setConversa([
         ...conversa,
-        { remetente: "Usuário", texto: prompt },
+        { remetente: "Você", texto: prompt },
         { remetente: "Spark", texto: await res.json() },
       ]);
     }
@@ -42,11 +42,11 @@ export function Chat() {
     <div className={`flex w-full h-full transition-all duration-1000 ease-in-out
          ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       {/* Painel lateral */}
-      <div className="bg-[#011f3a] h-screen w-3/12">
+      <div className="bg-[#011f3a] hidden md:block h-screen w-3/12">
         <abbr title="Nova conversa">
           <div className="font-sans text-white flex ml-2 cursor-pointer select-none duration-300 hover:scale-105">
             <img
-              src="favicon.ico"
+              src='../../../public/favicon.ico'
               className="w-9 h-9 mt-4 ml-4 border rounded-full shadow-md shadow-[#011f3a]"
             />
             <h2 className="mt-6 ml-1.5">Nova conversa</h2>
@@ -55,11 +55,11 @@ export function Chat() {
       </div>
 
       {/* Tela principal */}
-      <div className="bg-white h-screen w-9/12 pb-20 overflow-scroll">
+      <div className="bg-white h-screen w-full md:w-9/12 pb-20 overflow-scroll">
         {conversa.length === 0 && (
           <>
-            <img className="mx-auto w-40 mt-28" src={imgBlackLogo} />
-            <h2 className="text-center font-sans text-3xl mt-2 font-bold text-[#011f3a]">
+            <img className="mx-auto w-20 md:w-40 mt-28" src={imgBlackLogo} />
+            <h2 className="text-center font-sans text-2xl md:text-3xl mt-2 font-bold text-[#011f3a]">
               Como posso ajudá-lo hoje?
             </h2>
           </>
@@ -73,7 +73,7 @@ export function Chat() {
             />
           );
         })}
-        <div className="rounded-xl border border-slate-400 w-8/12 ml-12 mb-4 h-12 bg-white absolute bottom-0 ">
+        <div className="rounded-xl border border-slate-400 w-full md:w-8/12 md:ml-12 mb-4 h-12 bg-white absolute bottom-0 ">
           <button
             onClick={novaMensagem}
             className="bg-orange-500 w-8 h-8 right-2 top-2 rounded-lg absolute font-bold text-white"
