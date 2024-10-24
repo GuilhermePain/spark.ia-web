@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
+import { TypeAnimation } from "react-type-animation";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+
 
 export function Questions() {
   const [isVisible, setIsVisible] = useState(false);
   const [questão, setQuestão] = useState({});
+  const [mostrarComentario, setMostrarComentario] = useState(false);
 
   useEffect(() => {
     // Simula um tempo de carregamento ou gatilho para exibir o conteúdo
@@ -19,27 +23,27 @@ export function Questions() {
   const númeroQuestão = parseInt(data[3]);
 
   useEffect(() => {
-    fetch(
-      `https://spark-ia.duckdns.org/api/exam/${prova}/${númeroQuestão}`
-    ).then(async (res) => setQuestão(await res.json()));
+    fetch(`https://spark-ia.duckdns.org/api/exam/${prova}/${númeroQuestão}`).then(
+      async (res) => setQuestão(await res.json())
+    );
   }, []);
 
   return (
     <div
-      className={`transition-all duration-1000 ease-in-out
-         ${isVisible ? "opacity-100" : "opacity-0"}`}
+      className={`transition-all duration-1000 ease-in-out ${isVisible ? "opacity-100" : "opacity-0"
+        }`}
     >
       <Header />
       {questão.alternatives && (
         <main className="w-4/5 mx-auto mt-32 pb-10">
-          <div className="fixed right-12 bottom-10 flex gap-2">
+          <div className="fixed right-8 bottom-10 flex gap-2">
             <Button
               typeButton="primary"
               disabled={númeroQuestão <= 1}
               onClick={() => {
                 document.location.href = `/enem/${prova}/${númeroQuestão - 1}`;
               }}
-              text="Anterior"
+              text={<FaArrowLeft />}
               className="h-12 px-4 py-0"
             />
             <Button
@@ -48,7 +52,7 @@ export function Questions() {
               onClick={() => {
                 document.location.href = `/enem/${prova}/${númeroQuestão + 1}`;
               }}
-              text="Próxima"
+              text={<FaArrowRight />}
               className="h-12 px-4 py-0"
             />
           </div>
@@ -68,14 +72,12 @@ export function Questions() {
             <ol>
               {questão.alternatives.map((alt, ind) => {
                 return (
-                  <li className="text-lg">
-                    {alt.includes("https") && (
+                  <li className="text-lg" key={ind}>
+                    {alt.includes("https") ? (
                       <span>
-                        {"ABCDE"[ind]}){" "}
-                        <img className="inline-flex" src={alt} />
+                        {"ABCDE"[ind]}) <img className="inline-flex" src={alt} />
                       </span>
-                    )}
-                    {!alt.includes("https") && (
+                    ) : (
                       <span>
                         {"ABCDE"[ind]}) {alt}
                       </span>
@@ -88,27 +90,26 @@ export function Questions() {
           <hr className="mt-8 border-gray-300" />
           <section className="flex gap-4">
             <aside>
-              <h3 className="font-bold text-xl mt-4">Item correto</h3>
-              <p className="text-lg">Opção {questão.answer}</p>
+              <h3 className="font-bold text-xl mt-4">Resposta</h3>
+              <p className="text-lg">
+                item {" "}
+                {!mostrarComentario && (
+                  <>
+                    <span className="text-[#FA7807]" onClick={() => setMostrarComentario(true)}>(Exibir)</span>
+                  </>
+                )}
+              </p>
             </aside>
-            {questão.subjects.length > 0 && (
-              <aside>
-                <h3 className="font-bold text-xl mt-4">Conteúdo</h3>
-                {questão.subjects.map((sub) => {
-                  return <p className="text-lg">{sub}</p>;
-                })}
-              </aside>
-            )}
           </section>
-          {questão.subject && (
-            <>
-              <hr className="mt-8 border-gray-300" />
-
-              <section className="mt-4">
-                <h2 className="text-3xl font-bold">Comentário da questão</h2>
-                <p>{questão.subject}</p>
-              </section>
-            </>
+          {mostrarComentario && (
+            <section className="mt-2">
+              <h2 className="text-2xl font-bold">Comentário da questão</h2>
+              <TypeAnimation
+                sequence={[questão.comment, 500]} // A animação exibe o comentário
+                speed={50} // Velocidade de digitação
+                wrapper="p"
+                className="text-lg"
+              />            </section>
           )}
         </main>
       )}
