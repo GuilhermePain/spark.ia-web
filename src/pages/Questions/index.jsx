@@ -101,7 +101,7 @@ export function Questions() {
               </p>
             </aside>
           </section>
-          {mostrarComentario && (
+          {(mostrarComentario && questão.comment) && (
             <section className="mt-2">
               <h2 className="text-2xl font-bold">Comentário da questão</h2>
               <TypeAnimation
