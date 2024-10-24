@@ -26,7 +26,7 @@ const FlashcardSubject = () => {
         const res = await fetch(
           `https://spark-ia.duckdns.org/api/flashcard/${flashcard}/${numeroPergunta}`
         );
-        
+
         if (!res.ok) {
           // Se a resposta não for 200 OK, verifica se é 404 e redireciona
           if (res.status === 404) {
@@ -56,14 +56,22 @@ const FlashcardSubject = () => {
   };
 
   return (
-    <div className={`h-full transition-all duration-1000 ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+    <div
+      className={`h-full transition-all duration-1000 ease-in-out ${
+        isVisible ? "opacity-100" : "opacity-0"
+      }`}
+    >
       <Header />
       <main className="py-24 px-10">
         <h1 className="text-3xl font-bold">{pergunta.title}</h1>
         <hr className="border-[#fa7807] border-[2px] mt-3" />
         {!mostrar ? (
           <div className="flex justify-center items-center mt-5">
-            <Button text="Mostrar Resposta" typeButton="primary" onClick={mostrarResposta} />
+            <Button
+              text="Mostrar Resposta"
+              typeButton="primary"
+              onClick={mostrarResposta}
+            />
           </div>
         ) : (
           <div className="mt-5">
@@ -71,12 +79,21 @@ const FlashcardSubject = () => {
               sequence={[resposta]}
               wrapper="p"
               cursor={false}
-              speed={50}
+              speed={99}
               repeat={0}
             />
             <div className="w-full flex justify-between md:justify-end items-center md:gap-2 gap-8 mt-5">
-              <Button text="Errei" width="w-[200px]" onClick={proximaPergunta} />
-              <Button text="Acertei" typeButton="primary" width="w-[200px]" onClick={proximaPergunta} />
+              <Button
+                text="Errei"
+                width="w-[200px]"
+                onClick={proximaPergunta}
+              />
+              <Button
+                text="Acertei"
+                typeButton="primary"
+                width="w-[200px]"
+                onClick={proximaPergunta}
+              />
             </div>
           </div>
         )}
