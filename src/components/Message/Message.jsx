@@ -1,7 +1,6 @@
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import imgBlackLogo from "../../assets/imgs/png/blackLogo.png";
-import { TypeAnimation } from "react-type-animation";
 
 export default function Mensagem(props) {
   console.log(props.mensagem);
@@ -22,17 +21,7 @@ export default function Mensagem(props) {
       </div>
       <div className="w-full ml-1">
         <h2 className="font-bold text-lg">{props.nome}</h2>
-        {props.nome === "Spark" ? (
-          <TypeAnimation
-            sequence={[props.mensagem]}
-            wrapper="p"
-            cursor={false}
-            speed={50}
-            repeat={0}
-          />
-        ) : (
-          <Markdown remarkPlugins={[remarkGfm]}>{props.mensagem}</Markdown>
-        )}
+        <Markdown remarkPlugins={[remarkGfm]}>{props.mensagem}</Markdown>
       </div>
     </div>
   );
