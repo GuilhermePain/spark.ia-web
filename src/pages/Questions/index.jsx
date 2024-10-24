@@ -92,10 +92,10 @@ export function Questions() {
             <aside>
               <h3 className="font-bold text-xl mt-4">Resposta</h3>
               <p className="text-lg">
-                item {" "}
-                {!mostrarComentario && (
+                Item {" "}
+                {mostrarComentario ? questão.answer : (
                   <>
-                    <span className="text-[#FA7807]" onClick={() => setMostrarComentario(true)}>(Exibir)</span>
+                    <span className="text-[#FA7807] cursor-pointer" onClick={() => setMostrarComentario(true)}>(Exibir)</span>
                   </>
                 )}
               </p>
@@ -105,8 +105,9 @@ export function Questions() {
             <section className="mt-2">
               <h2 className="text-2xl font-bold">Comentário da questão</h2>
               <TypeAnimation
+                cursor={false}
                 sequence={[questão.comment, 500]} // A animação exibe o comentário
-                speed={50} // Velocidade de digitação
+                speed={99} // Velocidade de digitação
                 wrapper="p"
                 className="text-lg"
               />            </section>
