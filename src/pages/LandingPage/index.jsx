@@ -99,7 +99,7 @@ export function LandingPage() {
             <p className="text-[#818181] text-[22px] mb-4">
               Transforme Textos e Links em Questões de Prova em Segundos
             </p>
-            <a href="/cadastro">
+            <a href="/inicio">
               <Button
                 text="Experimentar agora!"
                 px="px-20"
